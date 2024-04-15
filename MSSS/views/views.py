@@ -1,20 +1,20 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import patient, Appointment, HealthMonitor, ProviderNetwork
-from .models import TelemedIntegration, diagnosis
-from .models import DataAnalytic, EHR, Prescription, RemoteMonitor, Treatment
-from .serializers import PatientSerializer, AppointmentSerializer
-from .serializers import ProviderNetworkSerializer, PrescriptionSerializer
+from .models import Patient, Appointment, HealthMonitor, ProviderNetwork
+from .models import TelemedIntegration, Diagnosis
+from .models import Data_Analytic, EHR, Prescription, RemoteMonitor, Treatment
+""" from .serializers import ProviderNetworkSerializer, PrescriptionSerializer
+"""
 
 
-def patient_list(request, patient_id):
+def patient(request, patient_id):
     """ Retrieve patient details from the database """
     patient = Patient.objects.get(id=patient_id)
     """Render a template with patient details """
     return render(request, 'patient_detail.html', {'patient': patient})
 
 
-def appointment_list(request):
+def appointment(request):
     """ Retrieve list of appointments from the database """
     appointments = Appointment.objects.all()
     """ Serialize appointments data as JSON and return as response """
@@ -36,7 +36,7 @@ def health_monitor_list(request):
     return JsonResponse(data, safe=False)
 
 
-class ProviderNetwork(View):
+class ProviderNetwork(request):
     def get(self, request):
         providers = Provider_Network.objects.all()
         """ Serialize data if needed """
@@ -97,9 +97,9 @@ def treatment_list(request):
     return JsonResponse(data, safe=False)
 
 
-def data_analytic_view(request):
+def data_analytic(request):
     """ Fetch data from the data_analytic_view model """
-    data = data_analytic_view.objects.all()
+    data = data_analytic.objects.all()
 
     """ Process the data as needed """
     serialized_data = [{'id': item.id, 'field1': item.field1, 'field2':
