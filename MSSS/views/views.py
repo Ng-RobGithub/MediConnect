@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from django.shortcuts import render
-from .models import Patient, Appointment, HealthMonitor, ProviderNetwork
+""" from django.shortcuts import render """
+from .models import Patient, Appointment, HealthMonitor, Provider_Network
 from .models import TelemedIntegration, Diagnosis
 from .models import Data_Analytic, EHR, Prescription, RemoteMonitor, Treatment
 """ from .serializers import ProviderNetworkSerializer, PrescriptionSerializer
@@ -9,9 +9,11 @@ from .models import Data_Analytic, EHR, Prescription, RemoteMonitor, Treatment
 
 def patient(request, patient_id):
     """ Retrieve patient details from the database """
-    patient = Patient.objects.get(id=patient_id)
-    """Render a template with patient details """
-    return render(request, 'patient_detail.html', {'patient': patient})
+    patients = Patient.objects.all()
+    """ Serialize patient data as JSON and return as response """
+    data = [{'id': patient.id, 'name': patient.name, 'age': patient.age} for
+            patient in patients]
+    return JsonResponse(data, safe=False)
 
 
 def appointment(request):
@@ -36,13 +38,13 @@ def health_monitor_list(request):
     return JsonResponse(data, safe=False)
 
 
-class ProviderNetwork(request):
-    def get(self, request):
-        providers = Provider_Network.objects.all()
-        """ Serialize data if needed """
-        data = [{'name': provider.name, 'location': provider.location} for
-                provider in providers]
-        return JsonResponse(data, safe=False)
+def provider_network(request):
+    provider_networks = Provider_Network.objects.all()
+    """ Serialize data if needed """
+    data = [{'name': provider_network.name, 'location':
+             provider_network.location} for provider_network in
+            provider_networks]
+    return JsonResponse(data, safe=False)
 
 
 def telemed_integration_view(request):
@@ -98,12 +100,12 @@ def treatment_list(request):
 
 
 def data_analytic(request):
-    """ Fetch data from the data_analytic_view model """
-    data = data_analytic.objects.all()
+    """ Fetch data from the data_analytic model """
+    data_analytics = Data_Analytic.objects.all()
 
     """ Process the data as needed """
-    serialized_data = [{'id': item.id, 'field1': item.field1, 'field2':
-                        item.field2} for item in data]
-
+    serialized_data = [{'id': data_analytic.id, 'field1': data_analytic.field1,
+                        'field2': data_analytic.field2} for data_analytic in
+                       data_analytics]
     """ Return a JSON response with the serialized data """
     return JsonResponse(serialized_data, safe=False)

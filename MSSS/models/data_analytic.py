@@ -2,20 +2,24 @@
 
 from django.db import models
 
+
 class AnalysisTask(models.Model):
     task_name = models.CharField(max_length=100)
     task_description = models.TextField()
     status = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
 class DataSource(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+
 
 class DataIntegration(models.Model):
     source = models.ForeignKey(DataSource, on_delete=models.CASCADE)
     integration_date = models.DateField()
     integration_details = models.TextField()
+
 
 class DataPreprocessing(models.Model):
     preprocessing_date = models.DateField()
@@ -43,7 +47,9 @@ class DiagnosticAnalytics(models.Model):
 class PredictiveModel(models.Model):
     model_name = models.CharField(max_length=100)
     model_type = models.CharField(max_length=50)
-    training_data = models.ForeignKey(DataSource, related_name='training_data', on_delete=models.CASCADE)
+    training_data = models.ForeignKey(DataSource,
+                                      related_name='training_data',
+                                      on_delete=models.CASCADE)
     prediction_results = models.ImageField(upload_to='predictive_models/')
 
 
