@@ -5,7 +5,7 @@ from .models import TelemedIntegration, Diagnosis
 from .models import Data_Analytic, EHR, Prescription, RemoteMonitor, Treatment
 
 
-def patient(request, patient_id):
+def patient_view(request, patient_id):
     """ Retrieve patient details from the database """
     patients = Patient.objects.all()
     """ Serialize patient data as JSON and return as response """
@@ -14,7 +14,7 @@ def patient(request, patient_id):
     return JsonResponse(data, safe=False)
 
 
-def appointment(request):
+def appointment_view(request):
     """ Retrieve list of appointments from the database """
     appointments = Appointment.objects.all()
     """ Serialize appointments data as JSON and return as response """
@@ -23,20 +23,20 @@ def appointment(request):
     return JsonResponse(data, safe=False)
 
 
-def diagnosis(request):
+def diagnosis_view(request):
     diagnoses = Diagnosis.objects.all()
     data = [{'id': diag.id, 'name': diag.name} for diag in diagnoses]
     return JsonResponse(data, safe=False)
 
 
-def health_monitor_list(request):
+def health_monitor_view(request):
     health_monitors = HealthMonitor.objects.all()
     data = [{'id': monitor.id, 'name': monitor.name} for monitor in
             health_monitors]
     return JsonResponse(data, safe=False)
 
 
-def provider_network(request):
+def provider_network_view(request):
     provider_networks = Provider_Network.objects.all()
     """ Serialize data if needed """
     data = [{'name': provider_network.name, 'location':
@@ -61,7 +61,7 @@ def ehr_view(request):
     return JsonResponse(list(data), safe=False)
 
 
-def prescription_list(request):
+def prescription_view(request):
     """ Fetch all prescription objects from the database """
     prescriptions = Prescription.objects.all()
 
@@ -73,7 +73,7 @@ def prescription_list(request):
     return JsonResponse(data, safe=False)
 
 
-def remote_monitor_list(request):
+def remote_monitor_view(request):
     """ Fetch all remote monitor objects from the database """
     remote_monitors = RemoteMonitor.objects.all()
 
@@ -85,7 +85,7 @@ def remote_monitor_list(request):
     return JsonResponse(data, safe=False)
 
 
-def treatment_list(request):
+def treatment_view(request):
     """ Fetch all treatment objects from the database """
     treatments = Treatment.objects.all()
 
@@ -97,7 +97,7 @@ def treatment_list(request):
     return JsonResponse(data, safe=False)
 
 
-def data_analytic(request):
+def data_analytic_view(request):
     """ Fetch data from the data_analytic model """
     data_analytics = Data_Analytic.objects.all()
     """ Process the data as needed """
