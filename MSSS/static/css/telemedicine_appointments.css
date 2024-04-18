@@ -1,0 +1,47 @@
+/* Reset CSS */
+ {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+
+	/* Body Styles */
+	body {
+		font-family: Arial, sans-serif;
+		line-height: 1.6;
+		padding: 20px;
+	}
+
+	/* Heading Styles */
+	h1, h2 {
+		margin-bottom: 20px;
+	}
+
+	/* List Styles */
+	ul {
+		list-style: none;
+	}
+
+	/* Telemedicine Appointments List Styles */
+	.telemedicine-appointments-list li {
+		margin-bottom: 10px;
+	}
+
+	/* Appointment Details Styles */
+	.appointment-details {
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
+
+	.appointment-details p {
+		margin-bottom: 5px;
+	}
+
+	.appointment-details a {
+		color: #007bff;
+	}
+
+	.appointment-details a:hover {
+		text-decoration: underline;
+	}

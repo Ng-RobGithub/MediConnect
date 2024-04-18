@@ -1,0 +1,39 @@
+/* Reset CSS */
+ {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+	
+	/* Body Styles */
+	body {
+		font-family: Arial, sans-serif;
+		line-height: 1.6;
+		padding: 20px;
+	}
+
+	/* Heading Styles */
+	h1, h2 {
+		margin-bottom: 20px;
+	}
+
+	/* List Styles */
+	ul {
+		list-style: none;
+	}
+
+	/* Analysis Tasks List Styles */
+	.analysis-tasks-list li {
+		margin-bottom: 10px;
+	}
+
+	/* Task Details Styles */
+	.task-details {
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
+
+	.task-details p {
+		margin-bottom: 5px;
+	}

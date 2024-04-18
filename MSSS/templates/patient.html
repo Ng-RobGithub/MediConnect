@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Patients{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Patients{% endblock %}</h1>
+
+		{% block content %}
+		{% if patients %}
+		<h2>Patients List</h2>
+		<ul class="patients-list">
+			{% for patient in patients %}
+			<li><a href="{% url 'patient_detail' patient.pk %}">{{ patient.first_name }} {{ patient.last_name }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No patients found.</p>
+		{% endif %}
+
+		{% if patient %}
+		<h2>{{ patient.first_name }} {{ patient.last_name }} Details</h2>
+		<div class="patient-details">
+			<p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+			<p><strong>Gender:</strong> {{ patient.get_gender_display }}</p>
+			<p><strong>Address:</strong> {{ patient.address }}</p>
+			<!-- Add more details here as needed -->
+		</div>
+
+		<h2>{% if patient.pk %}Edit{% else %}Create{% endif %} Patient</h2>
+		<form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">{% if patient.pk %}Save Changes{% else %}Create{% endif %}</button>
+		</form>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Appointments{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Appointments{% endblock %}</h1>
+
+		{% block content %}
+		{% if appointments %}
+		<h2>Appointments List</h2>
+		<div class="appointments-list">
+			{% for appointment in appointments %}
+			<li><a href="{% url 'appointmointment.pk %}">
+				<p><strong>appointnd Time:</strong> {{ appointment.date_and_time }}</p>
+				<p><strong>Doctor:</strong> {{ appointment.doctor }}</p>
+				<p><strong>Location:</strong> {{ appointment.location }}</p>
+				<p><strong>Status:</strong> {{ appointment.get_status_display }}</p>
+				<!-- Add more details here as needed -->
+				</a>
+			</li>
+		</div>
+
+		<h2>{% if appointment.pk %}Edit{% else %}Create{% endif %} Appointment</h2>
+		<form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">{% if appointment.pk %}Save Changes{% else %}Create{% endif %}</button>
+		</form>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

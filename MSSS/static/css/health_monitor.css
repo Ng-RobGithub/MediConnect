@@ -1,0 +1,43 @@
+/* Reset CSS */
+ {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+
+	/* Body Styles */
+	body {
+		font-family: Arial, sans-serif;
+		line-height: 1.6;
+		padding: 20px;
+	}
+
+	/* Heading Styles */
+	h1, h2 {
+		margin-bottom: 20px;
+	}
+
+	/* Table Styles */
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th, td {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+
+	th {
+		background-color: #f2f2f2;
+	}
+
+	/* List Styles */
+	ul {
+		list-style: none;
+	}
+
+	/* Health Events List Styles */
+	.health-events-list li {
+		margin-bottom: 10px;
+	}

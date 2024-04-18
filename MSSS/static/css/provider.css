@@ -1,0 +1,48 @@
+/* Reset CSS */
+ {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+
+	/* Body Styles */
+	body {
+		font-family: Arial, sans-serif;
+		line-height: 1.6;
+		padding: 20px;
+	}
+
+	/* Heading Styles */
+	h1, h2 {
+		margin-bottom: 20px;
+	}
+
+	/* List Styles */
+	ul {
+		list-style: none;
+	}
+
+	/* Providers List Styles */
+	.providers-list li {
+		margin-bottom: 10px;
+	}
+
+	/* Provider Details Styles */
+	.provider-details {
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
+
+	.provider-details p {
+		margin-bottom: 5px;
+	}
+
+	.provider-details ul {
+		margin-left: 20px;
+	}
+
+	/* Provider Reviews Styles */
+	.provider-reviews li {
+		margin-bottom: 10px;
+	}

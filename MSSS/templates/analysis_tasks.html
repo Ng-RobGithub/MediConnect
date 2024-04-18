@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Analysis Tasks{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1> Analysis-tasks-list</h1>
+		<ul>
+			{% for task in analysis_tasks %}
+			<li><a href="{% url 'analysis_task_detail' task.pk %}">{{ task.task_name }}</a></li>
+			{% endfor %}
+			</ul>
+			{% else %}
+			<p>No analysis tasks found.</p>
+			{% endif %}
+
+			{% if task %}
+			<h2>{{ task.task_name }} Detail</h2>
+			<div class="task-details">
+				<p><strong>Description:</strong> {{ task.task_description }}</p>
+				<p><strong>Status:</strong> {{ task.status }}</p>
+				<p><strong>Created At:</strong> {{ task.created_at }}</p>
+				<!-- Add more details here as needed -->
+			</div>
+			{% endif %}
+	</body>
+</html>

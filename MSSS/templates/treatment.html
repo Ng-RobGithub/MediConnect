@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Treatment{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Treatment{% endblock %}</h1>
+
+		{% block content %}
+		{% if treatment_list %}
+		<h2>Treatment List</h2>
+		<div class="treatment-list">
+			{% for treatment in treatment_list %}
+			<li><a href="{% url 'treatment_detail' treatment.pk %}">
+				<p><strong>Treatment Name:</strong>_{{ treatment.name }}</p>
+				<p><strong>Description:</strong> {{ treatment.description }}</p>
+				<p><strong>Start Date:</strong> {{ treatment.start_date }}</p>
+				<p><strong>End Date:</strong> {{ treatment.end_date }}</p>
+				<p><strong>Provider:</strong> {{ treatment.provider }}</p>
+				<p><strong>Patient:</strong> {{ treatment.patient }}</p>
+				<p><strong>Type:</strong> {{ treatment.treatment_type }}</p>
+				<p><strong>Dosage:</strong> {{ treatment.dosage }}</p>
+				<p><strong>Frequency:</strong> {{ treatment.frequency }}</p>
+				<p><strong>Instructions:</strong> {{ treatment.instructions }}</p>
+				<p><strong>Status:</strong> {{ treatment.status }}</p>
+				<!-- Add more details here as needed -->
+				</a>
+			</li>
+		</div>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

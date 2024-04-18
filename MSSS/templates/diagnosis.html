@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Diagnos{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block content %}</h1>
+
+		{% if diagnoses %}
+		<h2>Diagnoses List</h2>
+		<ul class="diagnoses-list">
+			{% for diagnosis in diagnoses %}
+			<li><a href="{% url 'diagnosis_detail' diagnosis.pk %}">{{ diagnosis.code }} - {{ diagnosis.description }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No diagnoses found.</p>
+		{% endif %}
+
+		{% if diagnosis %}
+		<h2>{{ diagnosis.code }} - {{ diagnosis.description }}</h2>
+		<div class="diagnosis-details">
+			<p><strong>Date Diagnosed:</strong> {{ diagnosis.date_diagnosed }}</p>
+			<p><strong>Provider:</strong> {{ diagnosis.provider.name }}</p>
+			<p><strong>Patient:</strong> {{ diagnosis.patient.name }}</p>
+		</div>
+		{% endif %}
+
+		<h2>{% if diagnosis.pk %}Edit{% else %}Create{% endif %} Diagnosis</h2>
+		<form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">{% if diagnosis.pk %}Save Changes{% else %}Create{% endif %}</button>
+		</form>
+		{% endblock %}
+	</body>
+</html>

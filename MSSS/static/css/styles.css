@@ -1,0 +1,40 @@
+/* Basic styling for headings */
+h1 {
+	color: blue;
+	font-size: 24px;
+}
+
+/* Styling for paragraphs */
+p {
+	color: black;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+/* Styling for links */
+a {
+	color: #007bff; /* Blue color */
+	text-decoration: none; /* Remove underline */
+}
+
+/* Styling for lists */
+ul {
+	list-style-type: none; /* Remove bullet points */
+}
+
+/* Styling for buttons */
+button {
+	background-color: #007bff; /* Blue color */
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* Styling for containers */
+.container {
+	max-width: 960px;
+	margin: 0 auto; /* Center align */
+	padding: 20px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Health Monitoring Dashboard</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>Health Monitoring Dashboard</h1>
+		<h2>Patient Information</h2>
+		<p><strong>Name:</strong> {{ patient.name }}</p>
+		<p><strong>Contact Number:</strong> {{ patient.contact_number }}</p>
+		<p><strong>Email:</strong> {{ patient.email }}</p>
+		<p><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+		<p><strong>Medical History:</strong></p>
+		<p>{{ patient.medical_history }}</p>
+
+		<h2>Vital Signs</h2>
+		<table class="vital-signs-table">
+			<tr>
+				<th>Timestamp</th>
+				<th>Blood Pressure</th>
+				<th>Heart Rate</th>
+				<th>Respiratory Rate</th>
+				<th>Temperature</th>
+				<th>Oxygen Saturation</th>
+			</tr>
+			{% for vital_sign in vital_signs %}
+			<tr>
+				<td>{{ vital_sign.timestamp }}</td>
+				<td>{{ vital_sign.blood_pressure }}</td>
+				<td>{{ vital_sign.heart_rate }}</td>
+				<td>{{ vital_sign.respiratory_rate }}</td>
+				<td>{{ vital_sign.temperature }}</td>
+				<td>{{ vital_sign.oxygen_saturation }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		<h2>Health Events</h2>
+		<ul class="health-events-list">
+			{% for event in health_events %}
+			<li><strong>{{ event.event_type }}</strong> - {{ event.timestamp }}: {{ event.details }}</li>
+			{% endfor %}
+		</ul>
+
+		<!-- Add more sections as needed -->
+
+	</body>
+</html>

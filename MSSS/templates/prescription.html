@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Prescription{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Prescription{% endblock %}</h1>
+
+		{% block content %}
+		{% if prescription_list %}
+		<h2>Prescription List</h2>
+		<ul class="prescription-list">
+			{% for prescription in prescription_list %}
+			<li><a href="{% url 'prescription_detail' prescription.pk %}">Prescription ID: {{ prescription.prescription_id }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No prescriptions found.</p>
+		{% endif %}
+
+		{% if prescription %}
+		<h2>Prescription Detail</h2>
+		<div class="prescription-detail">
+			<p><strong>Prescription ID:</strong> {{ prescription.prescription_id }}</p>
+			<p><strong>Medication</strong> {{ prescription.medication_name }}</p>
+			<p><strong>Dosage:</strong> {{ prescription.dosage }}</p>
+			<p><strong>Frequency:</strong> {{ prescription.frequency }}</p>
+			<p><strong>Quantity:</strong> {{ prescription.quantity }}</p>
+			<p><strong>Instructions:</strong> {{ prescription.instructions }}</p>
+			<!-- Add more details here as needed -->
+		</div>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

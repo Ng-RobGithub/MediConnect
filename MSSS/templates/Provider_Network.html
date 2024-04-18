@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Provider Network{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Provider Network{% endblock %}</h1>
+
+		{% block content %}
+		{% if providers %}
+		<h2>Providers List</h2>
+		<ul class="providers-list">
+		{% for provider in providers %}
+		<li><a href="{% url 'provider_detail' provider.pk %}">{{ provider.name }}</a></li>
+		{% endfor %}
+		</ul>
+		{% else %}
+		<p>No providers found.</p>
+		{% endif %}
+
+		{% if provider %}
+		<h2>{{ provider.name }} Details</h2>
+		<div class="provider-details">
+			<p><strong>Email:</strong> {{ provider.email }}</p>
+			<p><strong>Phone Number:</strong> {{ provider.phone_number }}</p>
+			<p><strong>Address:</strong> {{ provider.address }}</p>
+			<p><strong>Specialties:</strong></p>
+			<ul>
+				{% for specialty in provider.specialties.all %}
+				<li>{{ specialty.name }}</li>
+				{% endfor %}
+			</ul>
+			<!-- Add more details here as needed -->
+		</div>
+
+		<h2>Reviews for {{ provider.name }}</h2>
+		<ul class="provider-reviews">
+			{% for review in reviews %}
+			<li><strong>{{ review.rating }}/5 - {{ review.comment }}</strong></li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

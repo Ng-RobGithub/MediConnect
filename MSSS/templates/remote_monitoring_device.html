@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Remote Monitoring Device{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Remote Monitoring Device{% endblock %}</h1>
+
+		{% block content %}
+		{% if device_list %}
+		<h2>Remote Monitoring Device List</h2>
+		<ul class="device-list">
+			{% for device in device_list %}
+			<li><a href="{% url 'device_detail' device.pk %}">Device Type: {{ device.device_type }} - Serial Number: {{ device.serial_number }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No remote monitoring devices found.</p>
+		{% endif %}
+
+		{% if device %}
+		<h2>Remote Monitoring Device Detail</h2>
+		<div class="device-detail">
+			<p><strong>Device Type:</strong> {{ device.device_type }}</p>
+			<p><strong>Serial Number:</strong> {{ device.serial_number }}</p>
+			<p><strong>Manufacturer:</strong> {{ device.manufacturer }}</p>
+			<p><strong>Patient:</strong> {{ device.patient }}</p>
+			<p><strong>Connection Status:</strong> {{ device.connection_status }}</p>
+			<!-- Add more details here as needed -->
+		</div>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

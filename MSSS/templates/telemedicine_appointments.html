@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Telemedicine Appointments{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}Telemedicine Appointments{% endblock %}</h1>
+
+		{% block content %}
+		{% if telemedicine_appointments %}
+		<h2>Telemedicine Appointments List</h2>
+		<ul class="telemedicine-appointments-list">
+			{% for appointment in telemedicine_appointments %}
+			<li><a href="{% url 'telemedicine_appointment_detail' appointment.pk %}">{{ appointment.appointment_id }} - {{ appointment.date_and_time }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No telemedicine appointments found.</p>
+		{% endif %}
+
+		{% if appointment %}
+		<h2>{{ appointment.appointment_id }} - {{ appointment.date_and_time }}</h2>
+		<div class="appointment-details">
+			<p><strong>Patient:</strong> {{ appointment.patient_id }}</p>
+			<p><strong>Provider:</strong> {{ appointment.provider_id }}</p>
+			<p><strong>Meeting URL:</strong> <a href="{{ appointment.meeting_url }}">{{ appointment.meeting_url }}</a></p>
+			<!-- Add more details here as needed -->
+		</div>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>

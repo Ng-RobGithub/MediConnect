@@ -1,0 +1,72 @@
+
+/* Reset CSS */
+ {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	}
+
+	/* Body Styles */
+	body {
+		font-family: Arial, sans-serif;
+		line-height: 1.6;
+		padding: 20px;
+	}
+
+	/* Heading Styles */
+	h1, h2 {
+		margin-bottom: 20px;
+	}
+
+	/* List Styles */
+	ul {
+		list-style: none;
+	}
+
+	/* Patient List Styles */
+	.patients-list li {
+		margin-bottom: 10px;
+	}
+
+	/* Patient Details Styles */
+	.patient-details {
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin-bottom: 20px;
+	}
+
+	.patient-details p {
+		margin-bottom: 5px;
+	}
+
+	/* Form Styles */
+	form {
+		max-width: 400px;
+	}
+
+	form label {
+		display: block;
+	}
+
+	form input[type="text"],
+	form input[type="number"],
+	form textarea {
+		width: 100%;
+		padding: 8px;
+		margin-bottom: 10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+
+	form button {
+		background-color: #007bff;
+		color: #fff;
+		border: none;
+		padding: 10px 20px;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	form button:hover {
+		background-color: #0056b3;
+	}

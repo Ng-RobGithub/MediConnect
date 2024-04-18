@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}EHR{% endblock %}</title>
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		<h1>{% block heading %}EHR{% endblock %}</h1>
+
+		<div class="ehr-details"> 
+
+		{% block content %}
+		{% if ehr_list %}
+		<h2>EHR List</h2>
+		<ul class="ehr-list">
+			{% for ehr in ehr_list %}
+			<li><a href="{% url 'ehr_detail' ehr.pk %}">EHR for {{ ehr.patient }}</a></li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No electronic health records found.</p>
+		{% endif %}
+
+		<p><strong>Encounter Date Time:</strong> {{ ehr.encounter_date_time }}</p>
+		<p><strong>Healthcare Provider:</strong> {{ ehr.healthcare_provider }}</p>
+		<p><strong>Encounter Type:</strong> {{ ehr.encounter_type }}</p>
+		<p><strong>Reason for Encounter:</strong> {{ ehr.reason_for_encounter }}</p>
+		<!-- Add more details here as needed -->
+		</div>
+		{% endif %}
+		{% endblock %}
+	</body>
+</html>
