@@ -1,8 +1,7 @@
-""" from django.shortcuts import render """
 from django.http import JsonResponse
-from .models import Patient, Appointment, HealthMonitor, Provider_Network
-from .models import TelemedIntegration, Diagnosis
-from .models import Data_Analytic, EHR, Prescription, RemoteMonitor, Treatment
+from .models import Patient, Appointment, Health_Monitor, Provider_Network
+from .models import Telemed_Integration, Diagnosis
+from .models import Data_Analytic, EHR, Prescription, Remote_Monitor, Treatment
 
 
 def patient_view(request, patient_id):
@@ -30,13 +29,13 @@ def diagnosis_view(request):
 
 
 def health_monitor_view(request):
-    health_monitors = HealthMonitor.objects.all()
+    health_monitors = Health_Monitor.objects.all()
     data = [{'id': monitor.id, 'name': monitor.name} for monitor in
             health_monitors]
     return JsonResponse(data, safe=False)
 
 
-def provider_network_view(request):
+def Provider_Network_view(request):
     provider_networks = Provider_Network.objects.all()
     """ Serialize data if needed """
     data = [{'name': provider_network.name, 'location':
@@ -50,7 +49,7 @@ def telemed_integration_view(request):
     Integration
     """
     """ Retrieve all Telemed """
-    data = TelemedIntegration.objects.all().values()
+    data = Telemed_Integration.objects.all().values()
     return JsonResponse(list(data), safe=False)
 
 
@@ -75,7 +74,7 @@ def prescription_view(request):
 
 def remote_monitor_view(request):
     """ Fetch all remote monitor objects from the database """
-    remote_monitors = RemoteMonitor.objects.all()
+    remote_monitors = Remote_Monitor.objects.all()
 
     """ Serialize the remote monitor objects into JSON format """
     data = [{'id': monitor.id, 'name': monitor.name, 'status': monitor.status}

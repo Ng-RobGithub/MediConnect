@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 from django.db import models
 
 
@@ -28,7 +26,7 @@ class HealthEvent(models.Model):
     details = models.TextField()
 
 
-class HealthMonitoringPlan(models.Model):
+class health_monitoringPlan(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     plan_name = models.CharField(max_length=100)
     start_date = models.DateField()

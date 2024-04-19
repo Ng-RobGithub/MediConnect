@@ -1,16 +1,16 @@
 from django.contrib import admin
-from .models import Patient.py, Appointment.py, EHR.py, diagnosis.py, prescription.py
-from .models import presription.py, medication.py, remote_monitor.py, telemed.py
-from .model import health_monitor.py, provider_network.py, data_analytic.py
+from .models import patient, appointment, EHR, diagnosis, prescription
+from .models import treatment, remote_monitor, Telemed_Integration
+from .models import health_monitor, Provider_Network, data_analytic
 
-admin.site.register(Patient.py)
-admin.site.register(EHR.py)
-admin.site.register(Appointment.py)
-admin.site.register(diagnosis.py)
-admin.site.register(prescription.py)
-admin.site.register(medication.py)
-admin.site.register(remote_monitor.py)
-admin.site.register(telemed.py)
-admin.site.register(health_monitor.py)
-admin.site.register(provider_network.py)
+admin.site.register(patient)
+admin.site.register(EHR)
+admin.site.register(appointment)
+admin.site.register(diagnosis)
+admin.site.register(prescription)
+admin.site.register(treatment)
+admin.site.register(remote_monitor)
+admin.site.register(Telemed_Integration)
+admin.site.register(health_monitor)
+admin.site.register(Provider_Network)
 admin.site.register(data_analytic.py)

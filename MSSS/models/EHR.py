@@ -1,8 +1,7 @@
-#!/usr/bin/python
-
 from django.db import models
-from .models import Patient, Provider
-from .models import ElectronicHealthRecord
+from .Network_Provider import Provider
+from .ElectronicHealthRecord import ElectronicHealthRecord
+from .patient import Patient
 
 
 class EHR(models.Model):

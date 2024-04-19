@@ -1,10 +1,8 @@
-#!/usr/bin/python
-
 from django.db import models
 from .constants import APPOINTMENT_STATUSES
 
 
-class Appointment(models.Model):
+class appointment(models.Model):
     date_and_time = models.DateTimeField()
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE)
