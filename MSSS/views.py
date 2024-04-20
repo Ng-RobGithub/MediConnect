@@ -1,16 +1,55 @@
 from django.http import JsonResponse
-from .models import Patient, Appointment, Health_Monitor, Provider_Network
-from .models import Telemed_Integration, Diagnosis
-from .models import Data_Analytic, EHR, Prescription, Remote_Monitor, Treatment
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect
+from .forms import DoctorForm
+from .models.doctor import Doctor
+from .models.patient import Patient
+from .models.ehr import ElectronicHealthRecord
+from .models.appointment import Appointment
+from .models.diagnosis import Diagnosis
+from .models.prescription import Prescription
+from .models.treatment import Treatment
+from .models.remote_monitor import Remote_Monitor
+from .models.telemed_integration import Telemed_Integration
+from .models.health_monitor import Health_Monitor
+from .models.provider_network import Provider
+from .models.data_analytic import Data_Analytic
+from .models.data_analytic import AnalyticalResult
 
 
 def patient_view(request, patient_id):
-    """ Retrieve patient details from the database """
-    patients = Patient.objects.all()
-    """ Serialize patient data as JSON and return as response """
-    data = [{'id': patient.id, 'name': patient.name, 'age': patient.age} for
-            patient in patients]
-    return JsonResponse(data, safe=False)
+    try:
+        """ Retrieve patient details from the database """
+        patients = Patient.objects.get(id=patient_id)
+        """ Serialize patient data as JSON and return as response """
+        data = [{'id': patient.id, 'name': patient.name, 'age': patient.age}
+                for patient in patients]
+        return JsonResponse(data)
+    except ObjectDoesNotExist:
+        return JsonResponse({'error': 'Patient not found'}, status=404)
+
+
+def doctor_view(request):
+    """ Retrieve all doctors from the database """
+    doctors = Doctor.objects.all()
+
+    """ Pass the doctors data to the template for rendering """
+    return render(request, 'doctor_list.html', {'doctors': doctors})
+
+
+def doctor_form(request):
+    if request.method == 'POST':
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')
+            """
+            Replace 'success_url' with the
+            URL you want to redirect to after successful form submission
+            """
+        else:
+            form = DoctorForm()
+            return render(request, 'doctor_form.html', {'form': form})
 
 
 def appointment_view(request):
@@ -35,12 +74,12 @@ def health_monitor_view(request):
     return JsonResponse(data, safe=False)
 
 
-def Provider_Network_view(request):
-    provider_networks = Provider_Network.objects.all()
+def provider_network_view(request):
+    provider_network = Provider.objects.all()
     """ Serialize data if needed """
-    data = [{'name': provider_network.name, 'location':
-             provider_network.location} for provider_network in
-            provider_networks]
+    data = [{'name': provider.name, 'location':
+             provider.location} for provider in
+            provider_network]
     return JsonResponse(data, safe=False)
 
 
@@ -56,7 +95,7 @@ def telemed_integration_view(request):
 def ehr_view(request):
     """ Example view function to handle requests related to EHR """
     ''' Retrieve all EHR data '''
-    data = EHR.objects.all().values()
+    data = ElectronicHealthRecord.objects.all().values()
     return JsonResponse(list(data), safe=False)
 
 
@@ -105,3 +144,15 @@ def data_analytic_view(request):
                        data_analytics]
     """ Return a JSON response with the serialized data """
     return JsonResponse(serialized_data, safe=False)
+
+
+def api_data_analytic_view(request):
+    """ Retrieve analytical results from the database or other sources """
+    analytical_results = AnalyticalResult.objects.all()
+
+    """ Serialize the analytical results into JSON format """
+    data = [{'task_id': result.task_id, 'result_data': result.result_data}
+            for result in analytical_results]
+
+    """ Return the serialized data as a JSON response """
+    return JsonResponse(data, safe=False)

@@ -2,7 +2,7 @@ from django.db import models
 from .constants import APPOINTMENT_STATUSES
 
 
-class appointment(models.Model):
+class Appointment(models.Model):
     date_and_time = models.DateTimeField()
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     doctor = models.ForeignKey('Doctor', on_delete=models.CASCADE)
@@ -15,5 +15,7 @@ class appointment(models.Model):
 
 
 def __str__(self):
-    return f"Appointment for {self.patient} with {self.doctor} on"
-    "{self.date_and_time}"
+    return (
+            f"Appointment for {self.patient} with {self.doctor}"
+            f"on {self.date_and_time}"
+        )

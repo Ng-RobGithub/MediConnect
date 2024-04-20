@@ -1,7 +1,9 @@
-from djiango.db import models
+from django.db import models
+from .provider_network import Provider
+from .patient import Patient
 
 
-class Provider(models.Model):
+class DiagnosisProvider(models.Model):
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
@@ -9,7 +11,7 @@ class Provider(models.Model):
     credentials = models.CharField(max_length=100)
 
 
-class Patient(models.Model):
+class DiagnosisPatient(models.Model):
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
@@ -17,7 +19,7 @@ class Patient(models.Model):
     medical_history = models.TextField()
 
 
-class diagnosis(models.Model):
+class Diagnosis(models.Model):
     code = models.CharField(max_length=20)
     description = models.TextField()
     date_diagnosed = models.DateField()

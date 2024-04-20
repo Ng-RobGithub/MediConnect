@@ -23,7 +23,7 @@ class PatientConsent(models.Model):
     consent_form = models.FileField(upload_to='consent_forms/')
 
 
-class ProviderAvailability(models.Model):
+class TelemedProviderAvailability(models.Model):
     provider_id = models.ForeignKey('Provider', on_delete=models.CASCADE)
     available_time_slots = models.TextField()
     appointment_capacity = models.IntegerField()
@@ -51,7 +51,7 @@ class PaymentTransaction(models.Model):
     payment_status = models.CharField(max_length=20)
 
 
-class TelemedicineIntegration(models.Model):
+class Telemed_Integration(models.Model):
     encrypted_communication = models.BooleanField()
     authentication_required = models.BooleanField()
     compliance_with_regulations = models.BooleanField()

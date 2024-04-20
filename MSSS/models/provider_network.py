@@ -27,7 +27,7 @@ class ProviderAvailability(models.Model):
     appointment_slots = models.TextField()
 
 
-class Appointment(models.Model):
+class Appointments(models.Model):
     provider = models.ForeignKey('Provider', on_delete=models.CASCADE)
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE)
     date_and_time = models.DateTimeField()

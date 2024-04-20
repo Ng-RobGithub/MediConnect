@@ -1,7 +1,14 @@
 from django.db import models
+from .patient import Patient
 
 
-class Patient(models.Model):
+class Health_Monitor(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    monitoring_date = models.DateField()
+    monitoring_result = models.TextField()
+
+
+class HealthMonitoredPatient(models.Model):
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
@@ -39,3 +46,7 @@ class MonitoringAlert(models.Model):
     alert_type = models.CharField(max_length=100)
     timestamp = models.DateTimeField()
     details = models.TextField()
+
+
+def __str__(self):
+    return f"Health Monitor for {self.patient}"

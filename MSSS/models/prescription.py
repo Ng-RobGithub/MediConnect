@@ -1,7 +1,8 @@
 from django.db import models
+from .patient import Patient
 
 
-class Patient(models.Model):
+class PrescribedPatient(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     gender = models.CharField(max_length=10)

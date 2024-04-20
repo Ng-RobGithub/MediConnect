@@ -1,7 +1,9 @@
 from django.db import models
+from .provider_network import Provider
+from .patient import Patient
 
 
-class Provider(models.Model):
+class TreatmentProvider(models.Model):
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
@@ -9,7 +11,7 @@ class Provider(models.Model):
     credentials = models.CharField(max_length=100)
 
 
-class Patient(models.Model):
+class TreatmentPatient(models.Model):
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()

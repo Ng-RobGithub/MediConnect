@@ -1,10 +1,9 @@
 from django.db import models
-from .Network_Provider import Provider
-from .ElectronicHealthRecord import ElectronicHealthRecord
+from .provider_network import Provider
 from .patient import Patient
 
 
-class EHR(models.Model):
+class ElectronicHealthRecord(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     encounter_date_time = models.DateTimeField()
     healthcare_provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
@@ -16,7 +15,7 @@ class EHR(models.Model):
     notes = models.TextField(blank=True)
 
 
-class VitalSigns(models.Model):
+class EHRVitalSigns(models.Model):
     ehr = models.ForeignKey(ElectronicHealthRecord, on_delete=models.CASCADE)
     blood_pressure = models.CharField(max_length=20)
     heart_rate = models.IntegerField()
@@ -72,4 +71,4 @@ class EHRTimestamps(models.Model):
 
 
 def __str__(self):
-    return f"EHR for {self.patient} - {self.date_and_time}"
+    return f"EHR for {self.patient} - {self.encounter_date_time}"

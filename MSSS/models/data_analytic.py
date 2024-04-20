@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class Data_Analytic(models.Model):
+    analysis_name = models.CharField(max_length=100)
+    analysis_description = models.TextField()
+    analysis_date = models.DateField()
+    analysis_result = models.TextField()
+
+
 class AnalysisTask(models.Model):
     task_name = models.CharField(max_length=100)
     task_description = models.TextField()

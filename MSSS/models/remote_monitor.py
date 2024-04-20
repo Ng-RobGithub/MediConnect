@@ -1,7 +1,16 @@
 from django.db import models
+from .patient import Patient
 
 
-class Patient(models.Model):
+class Remote_Monitor(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    device_type = models.CharField(max_length=100)
+    serial_number = models.CharField(max_length=50)
+    manufacturer = models.CharField(max_length=100)
+    connection_status = models.CharField(max_length=50)
+
+
+class MonitoredPatient(models.Model):
     name = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=20)
     email = models.EmailField()
