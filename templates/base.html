@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{% block title %}Mediconnect{% endblock %}</title>
+		<!-- Add any CSS or meta tags specific to your project -->
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+
+		<header>
+			<!-- Navigation bar -->
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="{% url 'about' %}">About</a></li>
+					<!-- Add more navigation links as needed -->
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<!-- Content block that will be overridden by child templates -->
+			{% block content %}
+			{% endblock %}
+		</main>
+
+		<footer>
+			<!-- Footer content -->
+			<p>&copy; 2024 Mediconnect. All rights reserved.</p>
+		</footer>
+
+		<!-- Add any JavaScript specific to your project -->
+		<script src="{% static 'js/script.js' %}"></script>
+
+	</body>
+</html>

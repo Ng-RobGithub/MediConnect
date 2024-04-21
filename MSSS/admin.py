@@ -13,6 +13,9 @@ from .models.data_analytic import Data_Analytic
 from .models.doctor import Doctor
 
 
+admin.site.site_header = "mediconnect Admin"
+admin.site.site_title = "Medical Service Support System"
+admin.site.index_title = "Welcome to mediconnect Admin portal"
 admin.site.register(Patient)
 admin.site.register(ElectronicHealthRecord)
 admin.site.register(Appointment)

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Mediconnect</title>
+		<!-- Add any CSS or meta tags specific to your project -->
+		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	</head>
+	<body>
+		{% extends 'base.html' %}
+		{% block content %}
+
+		<div class="container">
+			<div class="row mt-5">
+				<div class="col-md-6 col-12 col-lg-6">
+					<h1 class="text mb-5">
+						Welcome to Mediconnect
+					</h1>
+					<p class="lead mb-4">
+					Connect with healthcare providers and access medical services online.
+					</p>
+					<div class="row align-items-center g-3">
+						<div class="col-auto">
+							<label class="visually-hidden" for="inputEmail">Email</label>
+							<input type="email" class="form-control" id="inputEmail" placeholder="Enter your email">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary">Get Started</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-12 col-lg-6">
+					<img src="{% static 'images/home_image.jpg' %}" alt="Home Image" class="img-fluid">
+				</div>
+			</div>
+		</div>
+
+		{% endblock %}
+		<!-- Add any JavaScript specific to your project -->
+		<script src="{% static 'js/script.js' %}"></script>
+
+	</body>
+</html>
