@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  mediconnect:
+    image: mediconnect
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:8000
