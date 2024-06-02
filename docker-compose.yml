@@ -1,10 +1,32 @@
-version: '3.4'
+version: '3.8'
 
 services:
-  mediconnect:
-    image: mediconnect
+  web:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
+    command: gunicorn --bind 0.0.0.0:8000 mediconnect.wsgi:application
+    volumes:
+      - .:/app
     ports:
-      - 8000:8000
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=mediconnect.settings
+      - DATABASE_URL=postgres://yourdbuser:yourdbpassword@db:5432/yourdbname
+      - SECRET_KEY=your_secret_key
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: yourdbname
+      POSTGRES_USER: yourdbuser
+      POSTGRES_PASSWORD: yourdbpassword
+
+volumes:
+  postgres_data:
