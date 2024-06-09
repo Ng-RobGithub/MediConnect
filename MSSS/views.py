@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .forms import DoctorForm
 from .models.doctor import Doctor
 from .models.patient import Patient
@@ -15,6 +16,10 @@ from .models.health_monitor import Health_Monitor
 from .models.provider_network import Provider
 from .models.data_analytic import Data_Analytic
 from .models.data_analytic import AnalyticalResult
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the MSSS index.")
 
 
 def patient_view(request, patient_id):
